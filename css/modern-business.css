@@ -48,9 +48,15 @@ body {
   color: black;
 }
 
-.btn-primary {
-  background-color: "#772929"
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus {
+    background-color: #772929;
+    border-color: #772929;
 }
+
 
 
 
