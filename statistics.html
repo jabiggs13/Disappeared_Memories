@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <script src="https://unpkg.com/frappe-charts@1.0.0/dist/frappe-charts.min.iife.js"></script>
 
     <title>Statistics</title>
 
@@ -90,11 +91,46 @@
       </div>
       <!-- /.row -->
 
-      <!-- .row -->
+      <!-- CHART 1 -->
       <div class="row">
-        <div id="chart"></div>
+          <h3>Chart 1</h3>
+        <div class="col-lg-12">
+          <div id="chart">              
+              <script>             
+                  let chart = new Chart( "#chart", { // or DOM element
+                    data: {
+                      labels: ["12am-3am", "3am-6am", "6am-9am", "9am-12pm",
+                      "12pm-3pm", "3pm-6pm", "6pm-9pm", "9pm-12am"],
+
+                      datasets: [
+                        {
+                          label: "Some Data", type: 'bar',
+                          values: [25, 40, 30, 35, 8, 52, 17, -4]
+                        },
+                        {
+                          label: "Another Set", type: 'bar',
+                          values: [25, 50, -10, 15, 18, 32, 27, 14]
+                        },
+                        {
+                          label: "Yet Another", type: 'line',
+                          values: [15, 20, -3, -15, 58, 12, -17, 37]
+                        }
+                      ],
+
+                      yMarkers: [{ label: "Marker", value: 70 }],
+                      yRegions: [{ label: "Region", start: -10, end: 50 }]
+                    },
+
+                    title: "Villages attacked by the Guatemalan Army",
+                    type: 'axis-mixed', // or 'bar', 'line', 'pie', 'percentage'
+                    height: 250,
+                    colors: ['green', 'orange', 'red']
+                  });
+              </script>
+            </div>
+          </div>
       </div>
-      <!-- /.row -->
+      <!-- /CHART 1 -->  
      
     </div>
     <!-- /.container -->
