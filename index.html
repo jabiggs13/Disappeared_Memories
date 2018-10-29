@@ -21,21 +21,29 @@
   <body>
 
 
-        <!-- MODAL -->
+    <!-- MODAL -->
 
-        <div class="modal hide fade" id="myModal">
-          <div class="modal-header">
-            <a class="close" data-dismiss="modal">×</a>
-            <h3>Modal header</h3>
-          </div>
-          <div class="modal-body">
-            <p>One fine body…</p>
-          </div>
-          <div class="modal-footer">
-            <a href="#" class="btn">Close</a>
-            <a href="#" class="btn btn-primary">Save changes</a>
-          </div>
-        </div>
+     <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+       <div class="modal-dialog">
+           <div class="modal-dialog modal-vertical-centered">
+               <div class="modal-content">
+                   <div class="modal-header">
+                       <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                       <h4 class="modal-title" id="myModalLabel">Caution before proceeding</h4>
+                   </div>
+                   <div class="modal-body">
+                       Disppeared Memories contains images and text that might make the viewer uneasy.  Graphic account of genocidal acts, as well as images of human skeletal remains from the Guatemalan Genocide are on the site.  If you do not wish to see or read this content, please turn back now.
+
+                   </div>
+                   <div class="modal-footer">
+                       <label ><input class="dont" type="checkbox" name="dismiss"> Don't show again</label><br />
+                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                   </div>
+               </div>
+           </div>
+       </div>
+     </div>
+
 
 
     <!-- Navigation -->
@@ -205,7 +213,7 @@
 
         <div class="col-lg-4 mb-4">
           <div class="card h-100">
-            <h4 class="card-header"">1982-1983 Events</h4>
+            <h4 class="card-header">1982-1983 Events</h4>
             <div class="card-body">
               <a href="1982.html">
                 <img src="img/index7.png" style="width:100%;">
@@ -270,11 +278,51 @@
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Initiates Modal and Uses cookies for Dont Show Again Checkbox -->
     <script type="text/javascript">
-        $(window).on('load',function(){
-            $('#myModal').modal('show');
-        });
+     $(document).ready(function () {
+        $('#myModal').modal();
+
+       //check cookies
+        function setCookie(){
+            var dis = document.cookie;
+            while(dis.charAt(0)==" ") dis = dis.substring(1);
+            if(dis.substring(8,13)== "false"){
+                $('#myModal').modal('hide');
+            }
+            console.log(dis.substring(8,13));
+        }
+        setCookie();
+
+
+          var $check = $("input.dont").click(function(){
+            if($("input.dont").is(":checked")){
+            document.cookie = "display=false";
+            }else{
+            document.cookie = "display=true";
+            }
+
+          });
+     });
     </script>
+
+
+
+    <!-- Centers Modal Vertically -->
+    <script type="text/javascript">
+          function centerModal() {
+        $(this).css('display', 'block');
+        var $dialog = $(this).find(".modal-dialog");
+        var offset = ($(window).height() - $dialog.height()) / 2;
+        // Center modal vertically in window
+        $dialog.css("margin-top", offset);
+    }
+    $('.modal').on('show.bs.modal', centerModal);
+    $(window).on("resize", function () {
+        $('.modal:visible').each(centerModal);
+    });
+    </script>
+
 
   </body>
 
