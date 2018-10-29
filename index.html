@@ -15,7 +15,46 @@
 
     <!-- Custom styles for this template -->
     <link href="css/modern-business.css" rel="stylesheet">
+<style>
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
 
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+</style>
   </head>
 
   <body>
@@ -23,27 +62,20 @@
 
     <!-- MODAL -->
 
-     <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-       <div class="modal-dialog">
-           <div class="modal-dialog modal-vertical-centered">
-               <div class="modal-content">
-                   <div class="modal-header">
-                       <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                       <h4 class="modal-title" id="myModalLabel">Caution before proceeding</h4>
-                   </div>
-                   <div class="modal-body">
-                       Disppeared Memories contains images and text that might make the viewer uneasy.  Graphic account of genocidal acts, as well as images of human skeletal remains from the Guatemalan Genocide are on the site.  If you do not wish to see or read this content, please turn back now.
+    <!-- Trigger/Open The Modal -->
+<button id="myBtn">Open Modal</button>
 
-                   </div>
-                   <div class="modal-footer">
-                       <label ><input class="dont" type="checkbox" name="dismiss"> Don't show again</label><br />
-                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                   </div>
-               </div>
-           </div>
-       </div>
-     </div>
+<!-- The Modal -->
+<div id="myModal" class="modal">
 
+ <!-- Modal content -->
+ <div class="modal-content">
+   <span class="close">&times;</span>
+   <h4>Caution before proceding</h4>
+   <p>Some text in the Modal..</p>
+ </div>
+
+</div>
 
 
     <!-- Navigation -->
@@ -278,49 +310,32 @@
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Initiates Modal and Uses cookies for Dont Show Again Checkbox -->
-    <script type="text/javascript">
-     $(document).ready(function () {
-        $('#myModal').modal();
+    <script>
+    // Get the modal
+    var modal = document.getElementById('myModal');
 
-       //check cookies
-        function setCookie(){
-            var dis = document.cookie;
-            while(dis.charAt(0)==" ") dis = dis.substring(1);
-            if(dis.substring(8,13)== "false"){
-                $('#myModal').modal('hide');
-            }
-            console.log(dis.substring(8,13));
-        }
-        setCookie();
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
 
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
 
-          var $check = $("input.dont").click(function(){
-            if($("input.dont").is(":checked")){
-            document.cookie = "display=false";
-            }else{
-            document.cookie = "display=true";
-            }
-
-          });
-     });
-    </script>
-
-
-
-    <!-- Centers Modal Vertically -->
-    <script type="text/javascript">
-          function centerModal() {
-        $(this).css('display', 'block');
-        var $dialog = $(this).find(".modal-dialog");
-        var offset = ($(window).height() - $dialog.height()) / 2;
-        // Center modal vertically in window
-        $dialog.css("margin-top", offset);
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
     }
-    $('.modal').on('show.bs.modal', centerModal);
-    $(window).on("resize", function () {
-        $('.modal:visible').each(centerModal);
-    });
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
     </script>
 
 
