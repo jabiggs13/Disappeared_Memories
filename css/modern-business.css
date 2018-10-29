@@ -171,17 +171,19 @@ button.close {
 .modal-title {
   margin: 0;
   line-height: 1.42857143;
+  color: black;
 }
 .modal-body {
   position: relative;
   padding: 15px;
-  font-size: 12px;
+  font-size: 14px;
   color: black;
 }
 .modal-footer {
   padding: 15px;
-    text-align: center;
-    margin-top: 10px;
+  text-align: center;
+  margin-top: 10px;
+  color: black;
 }
 
 .dontshow {
